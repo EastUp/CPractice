@@ -124,7 +124,7 @@ int main(){
     a = a - b;// a = 100
 
 
-    printf("就交换后ab的值分别是：%d,%d",a,b);
+    printf("交换后ab的值分别是：%d,%d",a,b);
 
     getchar();
 }
