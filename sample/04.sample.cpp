@@ -230,6 +230,62 @@ int main(){
 
 
 
+char* substr(const char* str,int start ,int end){
+    // 开辟一个字符串去存储我们的数据，开辟多大计算
+    // char sub[end -start];
+    int len = end - start;
+    char* sub = (char*)malloc(sizeof(char)*(len+1));// 记得+1，因为还有一个\0，在 NDK 一般会采用静态的数组存储 char sub[len]
+    // malloc 一定要 free
+
+    // 遍历赋值
+    for(int i = 0; i< len; i++){
+        sub[i] = str[start+i];
+    }
+    // 标记字符串结尾，否则 print 无法判断结尾
+    sub[len] = '\0';
+
+    printf("%p\n",sub);
+
+    // free(sub);
+
+    return sub;
+}
+
+
+char *str_replace(const char* str,const char* src,const char* dst) {
+    char* pos = strstr(str,src);
+    if(!pos)
+        return const_cast<char *>(str);
+
+    // 1. 计算新的数组大小
+    char result[strlen(str)-strlen(src)+strlen(dst)];
+
+    // 截取替换
+    int start_position = pos - str;
+    char* start = substr(str,0,start_position);
+    char* end = substr(str,start_position+strlen(src),strlen(str));
+
+    // 拼接
+    strcpy(result,start);
+    strcat(result,dst);
+    strcat(result,end);
+
+    return str_replace(result,src,dst);
+}
+
+// 字符串替换
+int main(){
+    char* str =  str_replace("aabbaabbfffaa","aa","ccc");
+
+    printf("%s",str);
+
+    getchar();
+}
+
+
+
+
+
 
 
 
