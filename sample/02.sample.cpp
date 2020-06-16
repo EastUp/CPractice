@@ -126,7 +126,7 @@ int main(){
 */
 
 // 函数指针（回调）
-void add(int num1,int num2){
+/*void add(int num1,int num2){
     printf("num1 + num2 = %d\n",num1 + num2);
 }
 
@@ -147,7 +147,7 @@ int main(){
     operator1(mins,1,2);
 
     getchar();
-}
+}*/
 
 // 监听数据压缩回调
 /*void call_back(int current,int total){
@@ -170,5 +170,21 @@ int main(){
     getchar();
 
 }*/
+
+//函数指针
+void print(){
+    printf("打印");
+}
+
+void method(void(print)()){
+    print();
+}
+
+int main(){
+    void(*ssd)() = &print;
+//    void(*ssds)() = print;
+    method(ssd);
+}
+
 
 

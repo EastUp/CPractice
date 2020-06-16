@@ -111,7 +111,7 @@ int main(){
     int* new_arr = (int*)realloc(arr,sizeof(int)*(num+new_num));
 
     if(new_arr){ // = if(new_arr != NULL)
-        i = new_num;
+        i = num;
         for(; i < (num+new_num); i++){
             arr[i] = i; // arr[i] == *(arr + i);
         }
