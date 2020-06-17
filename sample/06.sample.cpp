@@ -3,15 +3,27 @@
 #include <string.h>
 #include <cstdlib>
 
+// mac
+/*
 char* file_name = "/Users/east/Desktop/Sample.txt"; // 源文件
 char* file_copy_name = "/Volumes/MacDataStore/sample_copy.txt"; //拷贝的文件
-
 char* file_image_name = "/Users/east/Desktop/image.jpg"; // 源文件
 char* file_encrpy_image_name = "/Volumes/MacDataStore/image_encrpy.jpg"; // 加密后的文件
 char* file_decrpy_image_name = "/Volumes/MacDataStore/image_decrpy.jpg"; // 解密后的文件
+char* file_decrpy_image_name = "/Volumes/MacDataStore/image_decrpy.jpg"; // 解密后的文件
+char* file_split = "/Users/east/Desktop/image_%d.jpg"; // 分割后的文件
+*/
+
+// windows
+const char* file_name = "F:\\Sample.txt"; // 源文件
+const char* file_copy_name = "F:\\sample_copy.txt"; //拷贝的文件
+const char* file_image_name = "F:\\image.jpg"; // 源文件
+const char* file_encrpy_image_name = "F:\\image_encrpy.jpg"; // 加密后的文件
+const char* file_decrpy_image_name = "F:\\image_decrpy.jpg"; // 解密后的文件
+const char* file_split = "F:\\image_%d.jpg"; // 分割后的文件
 //文件读
 /*int main(){
-    // 打开文件（文件名，模式） mode r(读) w(写) rb(作为二进制读) wb(作为二进制写)
+    // 打开文件（文件名，模式） mode r(读) w(写) rb(作为二进制读) wb(作为二进制写) a（追加）
     // FILE* fopen(const char* filename,const char* mode);
 
     FILE* file = fopen(file_name,"r");
@@ -150,7 +162,7 @@ char* file_decrpy_image_name = "/Volumes/MacDataStore/image_decrpy.jpg"; // 解�
 
 }*/
 
-// 就改一个字节，过不去
+// 加密就改一个字节，过不去
 /*int main(){
     // rwb
     FILE* file = fopen(file_image_name,"wb"); // 流指针，创建文件？有没有其它办法 支付宝人脸识别 Mat 矩阵
@@ -163,7 +175,7 @@ char* file_decrpy_image_name = "/Volumes/MacDataStore/image_decrpy.jpg"; // 解�
 
 // 字符串密码进行加密
 /*int main(){
-    char* pass_word = "12345"; // 轮流进行^操作
+    const char* pass_word = "12345"; // 轮流进行^操作
 
     FILE* file = fopen(file_image_name,"rb"); // 流操作
     FILE* file_encrpy = fopen(file_encrpy_image_name,"wb"); // 新建一个文件 0KB
@@ -187,7 +199,7 @@ char* file_decrpy_image_name = "/Volumes/MacDataStore/image_decrpy.jpg"; // 解�
 
 /*int main(){
 
-    char* passWord = "123456";// 轮流进行^操作
+    const char* pass_word = "12345";// 轮流进行^操作
 
     FILE* file = fopen(file_encrpy_image_name,"rb"); // 流操作
     FILE* file_decrpy = fopen(file_decrpy_image_name,"wb"); // 新建一个文件 0KB
@@ -199,9 +211,9 @@ char* file_decrpy_image_name = "/Volumes/MacDataStore/image_decrpy.jpg"; // 解�
 
     int c; // EOF end of file
     int index = 0;
-    int pass_len = strlen(passWord);
+    int pass_len = strlen(pass_word);
     while ((c = fgetc(file)) != EOF){
-        fputc(c ^ passWord[index%pass_len],file_decrpy);
+        fputc(c ^ pass_word[index%pass_len],file_decrpy);
         index++;
     }
 
@@ -210,7 +222,7 @@ char* file_decrpy_image_name = "/Volumes/MacDataStore/image_decrpy.jpg"; // 解�
 }*/
 
 // java 的操作为什么会复杂？装饰者模式（光环）okio -> JavaIo -> native方法
-int getFileSize(char* fileName){
+int getFileSize(const char* fileName){
     FILE* file = fopen(fileName,"rb");
 
     if(!file)
@@ -224,7 +236,7 @@ int getFileSize(char* fileName){
 }
 
 // 文件的切割，思路类似于断点下载
-int main(){
+/*int main(){
     // 百度云 不大于4G的文件？ 8G 文件， 扔进去
     // 大文件（断点续传）
 
@@ -250,7 +262,7 @@ int main(){
     int i = 0;
     for(; i< 3; i++){
         file_names[i] = (char*)malloc(sizeof(char)*100);// '\0'
-        sprintf(file_names[i],"/Users/east/Desktop/image_%d.jpg",i);
+        sprintf(file_names[i],file_split,i);
 
         printf("%s\n",file_names[i]);
     }
@@ -258,7 +270,7 @@ int main(){
     i = 0;
     for(; i < file_number; i++){
         // 从源文件中往切割文件写入数据
-        FILE* cur_file = fopen(file_names[i],"wb");
+        FILE* cur_file = fopen(file_names[i],"wb");  // w 会新建文件
 
         // 写多少？
         int start = i*preFileSize;
@@ -278,6 +290,33 @@ int main(){
 
     fclose(file);
     free(file_names);
+}*/
+
+// 文件的合并
+int main(){
+    FILE* file0 = fopen("F:\\image_0.jpg","rb");
+    FILE* file1 = fopen("F:\\image_1.jpg","rb");
+    FILE* file2 = fopen("F:\\image_2.jpg","rb");
+
+    FILE* file_merge = fopen("F:\\image_merge.jpg","wb");
+
+    int c=0;
+    while((c = fgetc(file0))!=EOF){
+        fputc(c,file_merge);
+    }
+
+    while((c = fgetc(file1))!=EOF){
+        fputc(c,file_merge);
+    }
+
+    while((c = fgetc(file2))!=EOF){
+        fputc(c,file_merge);
+    }
+
+    fclose(file0);
+    fclose(file1);
+    fclose(file2);
+    fclose(file_merge);
 }
 
 
