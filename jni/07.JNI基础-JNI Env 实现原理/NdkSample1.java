@@ -1,4 +1,4 @@
-package com.east;
+package com.east.jni07;
 
 import java.util.UUID;
 

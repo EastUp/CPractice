@@ -1,4 +1,4 @@
-package com.east;
+package com.east.jni07;
 
 public class NdkSample {
     public static void main(String[] args) {

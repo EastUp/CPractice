@@ -1,14 +1,14 @@
 
 // 实现我们的 native 方法
-#include "com_east_NdkSample.h"
-#include "com_east_NdkSample1.h"
+#include "com_east_jni07_NdkSample.h"
+#include "com_east_jni07_NdkSample1.h"
 
 // JNIEXPORT： JNI 一个关键字，不能少（编译能通过），标记为该方法可以被外部调用
 // jstring：代表 java 中的 String
 // JNICALL：也是一个关键字，可以少的 jni call
 // jobject： java 传递下来的类对象，就是本项目中 NdkSample java 对象
 // jclass：java 传递下来的 class 对象，就是本项目中的 NdkSample.class
-JNIEXPORT jstring JNICALL Java_com_east_NdkSample_getSingnaturePassword
+JNIEXPORT jstring JNICALL Java_com_east_jni07_NdkSample_getSingnaturePassword
         (JNIEnv * env, jclass clz){
     // C 中 typedef const struct JNINativeInterface* JNIEnv; 已经是一个结构体指针了
     // C++ 中 typedef _JNIEnv JNIEnv; // 就是一个结构体
@@ -16,7 +16,7 @@ JNIEXPORT jstring JNICALL Java_com_east_NdkSample_getSingnaturePassword
     return (*env)->NewStringUTF(env, "eastrise");
 }
 
-JNIEXPORT void JNICALL Java_com_east_NdkSample1_changeName
+JNIEXPORT void JNICALL Java_com_east_jni07_NdkSample1_changeName
 (JNIEnv * env, jobject jobj){
 
 // 1. 获取 jclass
@@ -39,7 +39,7 @@ jstring jack_name = (*env)->NewStringUTF(env,"Jack");
 }
 
 // 静态方法参数会变为 jclass 代表 NdkSample1.class
-JNIEXPORT void JNICALL Java_com_east_NdkSample1_changeAge
+JNIEXPORT void JNICALL Java_com_east_jni07_NdkSample1_changeAge
 (JNIEnv * env, jclass jcls){
 
 // 2. 获取 jfieldID
@@ -54,7 +54,7 @@ age += 12;
 }
 
 // c 调用 java 层普通方法
-JNIEXPORT void JNICALL Java_com_east_NdkSample1_callAddMethod
+JNIEXPORT void JNICALL Java_com_east_jni07_NdkSample1_callAddMethod
 (JNIEnv * env, jobject jobj){
 
 // 3. 获取 jclass
