@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdio.h>
 #include <string.h>
-#include <malloc.h>
+//#include <malloc.h>
 
 /*void change1(int number){ // 不能修改
     number = 300;
@@ -112,7 +112,7 @@ int main(){
     getchar();
 }*/
 
-/*int main(){
+int main(){
     // 写入位置 0x00000000 时发生访问冲突
     char* p1 = NULL; // p1 = NULL,NUll 也是地方，指针指向 NULL 相当于指向 0x00000000
 
@@ -120,10 +120,12 @@ int main(){
 
     // Student student = null; 不用纠结 null 是啥，跟 c 和 c++ 有点类似
 
-    strcpy(p1,"1122");
+    strcpy(p1,"1122"); // 把 1122 赋值给p1 NUll的位置，这是错误的
+
+    printf("p1 = %s",p1); // Null的地址不能操作
 
     getchar();
-}*/
+}
 
 // 做字符串的强化
 /*int main(){
@@ -209,7 +211,7 @@ int main(){
 }*/
 
 // 4. 不要直接轻易的去改变调用传递个ini的指针  打个比方
-int strlen(char* const str){
+/*int strlen(char* const str){
     // 临时变量，套路
     char* countStr = str;
 
@@ -233,7 +235,7 @@ int main(){
     printf("len = %d",len);
 
     getchar();
-}
+}*/
 
 
 
