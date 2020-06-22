@@ -3,6 +3,6 @@ project(CPractice)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(CPractice sample/13.sample.c)
+add_executable(CPractice sample/14.sample.c)
 
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fexec-charset=GBK")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fexec-charset=GBK")
