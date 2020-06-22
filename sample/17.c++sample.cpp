@@ -194,13 +194,45 @@ int main(){
 }*/
 
 // 友元函数和普通函数的区别
-int main(){
+/*int main(){
     Student* stu = new Student("Eastrise",25);
 
     // Student::changeTag(36);
 
     changeAge(stu,36);
     stu -> print();
+
+    delete(stu);
+}*/
+
+// 友元类
+class ImageView{
+public: // B 是 A 的友元类
+    friend class Class;
+
+private:
+    int a;
+
+};
+
+class Class{
+public:
+    ImageView aObj;
+
+    void changeA(int number){
+        aObj.a = number;
+    }
+
+    int getA(){
+        return aObj.a;
+    }
+};
+
+int main(){
+    Class b;
+    b.changeA(12);
+
+    cout << b.getA() << endl;
 }
 
 
