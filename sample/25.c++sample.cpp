@@ -8,7 +8,8 @@ using namespace std;
 
 // 自定义重载（） 运算符
 // 1. 预定义函数对象和函数适配器
-/*int main(){
+/*
+int main(){
     // c/c++ 提供了很多定义好的函数对象
     // 常见的几个 less, greater , plus , equal_to
     plus<string> strAdd;
@@ -25,7 +26,8 @@ using namespace std;
     // 怎么写仿函数，一定要确定好你的仿函数的参数
     // bind2nd 函数适配器， aaa 相当于 equal_to 中的 right
 
-*//*    template<class _Ty = void>
+*/
+/*    template<class _Ty = void>
     struct multiplies
             : public binary_function<_Ty, _Ty, _Ty>
     {	// functor for operator*
@@ -35,11 +37,13 @@ using namespace std;
         }
     }*//*
 
+
     set<string> :: iterator  find_it = find_if(set1.begin(),set1.end(),bind2nd(equal_to<string>(),"aaa"));
     if(find_it!=set1.end()){
         cout << "找到了" << (*find_it).c_str() << endl;
     }
-}*/
+}
+*/
 
 // 1，种方式自定义仿函数（函数对象）
 /*class Equal{
@@ -102,7 +106,7 @@ int main(){
 
 
 // find, find_if
-int main(){
+/*int main(){
     vector<int> vector1;
     vector1.push_back(1);
     vector1.push_back(4);
@@ -128,7 +132,7 @@ int main(){
 
     // 有没有大于2的，自定义函数对象，预定义函数对象+函数适配器，省略
 
-}
+}*/
 
 // count，count_if
 /*int main(){
