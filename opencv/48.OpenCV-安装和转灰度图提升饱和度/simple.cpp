@@ -35,9 +35,14 @@ void main(){
 			uchar bw = (b + g + r) / 3 > 125 ? 255 : 0;
 
 			// saturate_cast 大于 255就变成255 ，小于0 就变成0
-			start_pixels[0] = saturate_cast<uchar>(bw);
+			/* start_pixels[0] = saturate_cast<uchar>(bw);
 			start_pixels[1] = saturate_cast<uchar>(bw);
-			start_pixels[2] = saturate_cast<uchar>(bw);
+			start_pixels[2] = saturate_cast<uchar>(bw);*/
+
+			// 饱和度提升会更亮些
+			start_pixels[0] = saturate_cast<uchar>(1.2f * b);
+			start_pixels[1] = saturate_cast<uchar>(1.2f * g);
+			start_pixels[2] = saturate_cast<uchar>(1.2f * r);
 
 			start_pixels += 3;
 		}
@@ -45,7 +50,7 @@ void main(){
 
 
 	// 把 mat 写入文件
-	imwrite("E://test_bw.jpg",src);
+	imwrite("E://test3.jpg",src);
 
 	// 显示图片
 	imshow("test pic", src);
