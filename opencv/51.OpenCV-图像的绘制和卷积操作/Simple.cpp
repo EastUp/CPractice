@@ -20,6 +20,7 @@ inline int max1(int a, int b){
 //
 //	imshow("src", src);
 //	waitKey(0);
+//	return 0;
 //}
 
 // 2. 形状和文件绘制
@@ -87,6 +88,7 @@ inline int max1(int a, int b){
 //
 //	imshow("src", dst);
 //	waitKey(0);
+//	return 0;
 //}
 
 // 3. 图像卷积和滤波操作
@@ -129,4 +131,5 @@ int main(){
 	imshow("src", src);
 	imshow("dst", dst);
 	waitKey(0);
+	return 0;
 }
