@@ -10,7 +10,7 @@ Mat src;
 
 
 /*int main(){
-	Mat src = imread("E:/copy.png");
+	Mat src = imread(wo);
 
 	if (!src.data){
 		cout << "src read error" << endl;
