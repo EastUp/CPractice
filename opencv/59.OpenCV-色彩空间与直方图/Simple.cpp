@@ -26,6 +26,38 @@ using namespace std;
 	return 0;
 }*/
 
+// 彩色图直方图均衡
+/*int main(){
+    Mat src = imread("E:/2_05.jpg");
+    if (!src.data){
+        cout << "read error" << endl;
+        return -1;
+    }
+
+    imshow("src",src);
+
+    vector<Mat> channels;
+    split(src,channels);
+
+    Mat blue, green, red;
+    blue = channels.at(0);
+    green = channels.at(1);
+    red = channels.at(2);
+
+    // 直方均衡
+    equalizeHist(blue, blue);
+    equalizeHist(green, green);
+    equalizeHist(red, red);
+
+    Mat dst;
+    merge(channels,dst);
+
+    imshow("dst",dst);
+
+    waitKey(0);
+    return 0;
+}*/
+
 // 直方图的计算和绘制
 int main(){
 	Mat src = imread("E:/copy.png");
@@ -70,8 +102,8 @@ int main(){
 	// 画出来，hist_b 存的是什么？存的是各个灰度值的个数，hist_b 最小值 0 ，最大值 图片的宽*高
 
 	// 归一化
-	int hist_h = 400;
-	int hist_w = 512; // 256 * 2
+	int hist_h = 400; // //直方图的图像的高
+	int hist_w = 512; // 256 * 2 直方图的图像的宽
 	int bin_w = hist_w / histSize; // 画笔大小
 	// alpha 最小值 
 	/*normalize(InputArray src, InputOutputArray dst, double alpha = 1, double beta = 0,
