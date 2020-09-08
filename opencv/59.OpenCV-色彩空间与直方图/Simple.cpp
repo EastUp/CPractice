@@ -1,40 +1,11 @@
-# <center>59.色彩空间与直方图<center>
+#include<opencv2/opencv.hpp>
+#include<iostream>
 
-# 知识点：
+using namespace cv;
+using namespace std;
 
-## 1. RGB与HSV
-    
-rgb请看下图:
-
-![](../pic/59.rgb.jpg)
-
-HSV 分析：  
-- H ： Hue 色相 色调，色度 0~360度  360种
-- S ：Saturation 饱和度
-- V ：Value 亮度
-
-![](../pic/59.hsv.jpg)
-
-作用：证件照背景替换，扣头发等等
-
-## 2.归一化 normalize
-
-归一化：就是把需要处理的数据经过处理后，限制在你需要的一定范围内。例如`假设我们把训练数据的第一个属性从[-10,+10]缩放到[-1,+1],那么如果测试数据的第一个属性属于区间[-11,+8],我们必须将测试数据转变为[-1.1,+0.8]`
-
-
-
-## 3.直方图均衡化 equalizeHistogram
-
-`单通道的图片`，统计其每个像素值的个数。
-
-
-概念：直方图均衡化是一种简单有效的图像增强技术，通过改变图像的直方图来改变图像中各像素的灰度，主要用于增强动态范围偏小的图像的对比度。
-把原始图像的直方图变换为均匀分布（均衡）的形式，这样就增加了像素之间灰度值差别的动态范围，从而达到增强图像整体对比度的效果
-
-![](../pic/59.直方图均衡化.png)
-
-```c++
-int main(){
+// 直方图均衡化
+/*int main(){
 	Mat src = imread("E:/2_04.png");
 	if (!src.data){
 		cout << "read error" << endl;
@@ -53,14 +24,9 @@ int main(){
 
 	waitKey(0);
 	return 0;
-}
-```
+}*/
 
-
-## 4.直方图的计算和绘制
-
-
-```c++
+// 直方图的计算和绘制
 int main(){
 	Mat src = imread("E:/copy.png");
 	if (!src.data){
@@ -142,7 +108,3 @@ int main(){
 	waitKey(0);
 	return 0;
 }
-```
-
-
-
