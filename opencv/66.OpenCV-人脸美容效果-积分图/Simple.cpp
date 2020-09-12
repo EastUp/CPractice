@@ -58,7 +58,7 @@ using namespace std;
 
 
 // 3. 使用积分图算法对卷积模糊进行优化
-void meanBlur(Mat &src, Mat &dst, int size){
+void fastBlateralBlur(Mat &src, Mat &dst, int size){
 	// 卷积的 size 必须确保为基数 size % 2 == 1
 	// 填充周围，方便计算
 	Mat mat;
@@ -113,7 +113,7 @@ int main(){
 	Mat dst;
 	int size = 15; // size == 10001 时 time = 1 秒
 	long st = clock();
-	meanBlur(src,dst,size);
+    fastBlateralBlur(src,dst,size);
 	long et = clock();
 	double time = static_cast<double>((et - st) / CLOCKS_PER_SEC);
 	cout << "time = " << time << endl;
