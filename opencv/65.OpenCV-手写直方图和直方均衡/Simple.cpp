@@ -151,47 +151,48 @@ void normalize(const Mat &src, Mat &dst, int n_max){
 // 4.3 生成一张映射表(255 * 累加概率)
 // 4.4 从映射表中查找赋值
 void equalizeHist(Mat &src,Mat &dst){
-	Mat hist;
-	// 1.直方图的统计
-	calcHist(src,hist);
-	// 2.计算直方图中像素的概率
-	Mat prob_mat(hist.size(),CV_32FC1);
+    Mat hist;
+    // 1.直方图的统计
+    calcHist(src,hist);
+    // 2.计算直方图中像素的概率
+    Mat prob_mat(hist.size(),CV_32FC1);
 
-	float image_size = 0;
-	for (int i = 0; i < hist.cols; i++)
-	{
-		image_size += hist.at<int>(0, i);
-	}
+    float image_size = src.rows * src.cols; // 这个就是总的次数，因为每个像素值都算一次
+    /*float image_size = 0;
+    for (int i = 0; i < hist.cols; i++)
+    {
+        image_size += hist.at<int>(0, i);
+    }*/
 
-	for (int i = 0; i < hist.cols; i++)
-	{
-		int times = hist.at<int>(0, i);
-		float prob = times / image_size;
-		prob_mat.at<float>(0, i) = prob;
-	}
-	// 3. 计算累加概率 256 （可读）
-	float prob_sum = 0;
-	for (int i = 0; i < hist.cols; i++)
-	{
-		prob_sum += prob_mat.at<float>(0, i);
-		prob_mat.at<float>(0, i) = prob_sum;
-	}
-	// 生成映射表
-	Mat map(hist.size(), CV_32FC1);
-	for (int i = 0; i < prob_mat.cols; i++)
-	{
-		map.at<float>(0, i) = 255 * prob_mat.at<float>(0, i); // 255 * 概率
-	}
+    for (int i = 0; i < hist.cols; i++)
+    {
+        int times = hist.at<int>(0, i);
+        float prob = times / image_size;
+        prob_mat.at<float>(0, i) = prob;
+    }
+    // 3. 计算累加概率 256 （可读）
+    float prob_sum = 0;
+    for (int i = 0; i < hist.cols; i++)
+    {
+        prob_sum += prob_mat.at<float>(0, i);
+        prob_mat.at<float>(0, i) = prob_sum;
+    }
+    // 生成映射表
+    Mat map(hist.size(), CV_32FC1);
+    for (int i = 0; i < prob_mat.cols; i++)
+    {
+        map.at<float>(0, i) = 255 * prob_mat.at<float>(0, i); // 255 * 概率
+    }
 
-	dst.create(src.size(), src.type());
-	for (int row = 0; row < src.rows; row++)
-	{
-		for (int col = 0; col < src.cols; col++)
-		{
-			uchar pixels = src.at<uchar>(row, col);
-			dst.at<uchar>(row, col) = map.at<float>(0,pixels);
-		}
-	}
+    dst.create(src.size(), src.type());
+    for (int row = 0; row < src.rows; row++)
+    {
+        for (int col = 0; col < src.cols; col++)
+        {
+            uchar pixels = src.at<uchar>(row, col);
+            dst.at<uchar>(row, col) = map.at<float>(0,pixels);
+        }
+    }
 }
 
 
