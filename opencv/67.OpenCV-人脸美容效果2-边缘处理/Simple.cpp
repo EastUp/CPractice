@@ -103,11 +103,12 @@ void skinDetect(Mat &src, Mat &skinMask){
 void fuseSkin(Mat &src,Mat &blur_mat, Mat &dst, Mat &skinMask){
     // 融合
     dst.create(src.size(),src.type());
-    // 处理一些区域，平滑点
+    // 处理一些区域，平滑点(所以有些地方的数值就不是0 或者 255了)
     GaussianBlur(skinMask, skinMask, Size(3, 3), 0.0);
 
     Mat skinMask_f;
     skinMask.convertTo(skinMask_f, CV_32F);
+	
     normalize(skinMask_f, skinMask_f, 0.0, 1.0, NORM_MINMAX);
 
     int rows = src.rows;
