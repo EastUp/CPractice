@@ -1,5 +1,5 @@
 # 这个脚本使用于在linux上的ndkr16以上ndkr17以下
-#环境：ndkr16,ffmpeg-3.3.9
+#环境：ndkr21,ffmpeg-4.3.1
 # 用于编译 android 平台的脚本
 #!/bin/bash
 #./etc/profile
@@ -8,10 +8,14 @@
 NDK_PATH=/lib/ndk/android-ndk-r21b
 ARCH=arm
 CPU=armv7-a
+API=21
 PREFIX=$(pwd)/android/$ARCH/$CPU
-ANDROID_TOOLCHAINS_PATH=$NDK_PATH/android-toolchains/android-19/arch-arm
+TARGET=armv7a-linux-androideabi
+ANDROID_TOOLCHAINS_PATH=$NDK_PATH/toolchains/llvm/prebuilt/linux-x86_64
 CROSS_PREFIX=$ANDROID_TOOLCHAINS_PATH/bin/arm-linux-androideabi-
 SYSROOT=$ANDROID_TOOLCHAINS_PATH/sysroot
+CFLAG="-D__ANDROID_API__=$API -Os -fPIC -DANDROID "
+LDFLAG="-lc -lm -ldl -llog "
 
  build(){
 	# 执行 .configure 文件
@@ -24,15 +28,18 @@ SYSROOT=$ANDROID_TOOLCHAINS_PATH/sysroot
 	--disable-ffmpeg \
 	--disable-ffplay \
 	--disable-ffprobe \
-	--disable-ffserver \
+	--disable-symver \
 	--disable-doc \
 	--arch=$ARCH \
 	--cpu=$CPU \
 	--cross-prefix=${CROSS_PREFIX} \
-	--enable-cross-compile \
 	--sysroot=$SYSROOT \
-	--target-os=linux \
-	--extra-cflags="-fpic" \
+	--cc=$ANDROID_TOOLCHAINS_PATH/bin/$TARGET$API-clang \
+	--cxx=$ANDROID_TOOLCHAINS_PATH/bin/$TARGET$API-clang++ \
+	--enable-cross-compile \
+	--target-os=android \
+	--extra-cflags="$CFLAG -mfloat-abi=softfp -mfpu=vfp -marm -march=$MARCH" \
+	--extra-ldflags="$LDFLAG" \
  
 	# makefile 清除，就是执行了 makefile 文件里面的 clean 命令
 	make clean
