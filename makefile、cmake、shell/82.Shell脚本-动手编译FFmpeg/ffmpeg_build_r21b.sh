@@ -8,6 +8,7 @@
 NDK_PATH=/lib/ndk/android-ndk-r21b
 ARCH=arm
 CPU=armv7-a
+MARCH=armv7-a
 API=21
 PREFIX=$(pwd)/android/$ARCH/$CPU
 TARGET=armv7a-linux-androideabi
@@ -30,6 +31,7 @@ LDFLAG="-lc -lm -ldl -llog "
 	--disable-ffprobe \
 	--disable-symver \
 	--disable-doc \
+	--disable-asm \
 	--arch=$ARCH \
 	--cpu=$CPU \
 	--cross-prefix=${CROSS_PREFIX} \
