@@ -26,7 +26,7 @@
 
 }*/
 
-/*int strlen_(char *str){
+/*int strlen_(const char *str){
     // 怎么获取字符串的长度？ 不断读取字符，判断末尾 '\0'
 
     int len = 0;
@@ -39,9 +39,9 @@
 
 // 字符串长度获取
 int main(){
-    char *name = "Eastrise is";
+    const char *name = "Eastrise is";
 
-    char str[] = {'E','a','s','t','r','i','s','e','\0','i','s'};
+    const char str[] = {'E','a','s','t','r','i','s','e','\0','i','s'};
 
     printf("name length is %d\n",strlen(name));
 
@@ -56,17 +56,19 @@ int main(){
 // 字符串的转换
 /*int main(){
 
-    // const char* num = "1"; -> int float double
-    // const char* num_str = "12.0xxx";
-    // int number = atoi(num_str); // 如果不能转换就是 0 ，后面如果有其他不适数字的就会被剔除 12xxx -> 12
+     const char* num1 = "1"; // -> int float double
+     const char* num_str1 = "12.0xxx";
+     int number1 = atoi(num_str1); // 如果不能转换就是 0 ，后面如果有其他不适数字的就会被剔除 12xxx -> 12
+    printf("number1 is %d\n",number1);
 
-    // const char* num_str = "12.5f";
-    // float number = atof(num_str); // 如果不能转换返回的是默认值 0.0000
+     const char* num_str2 = "12.5f";
+     float number2 = atof(num_str2); // 如果不能转换返回的是默认值 0.0000
+    printf("number2 is %f\n",number2);
 
-    const char *num_str = "12.5xx";
-    double number = strtod(num_str,NULL);
+    const char *num_str3 = "12.5xx";
+    double number3 = strtod(num_str3,NULL);// 如果不能转换就是 0.000 ，后面如果有其他不适数字的就会被剔除 12.5xxx -> 12.5000
 
-    printf("number is %lf",number);
+    printf("number3 is %lf\n",number3);
     getchar();
 }*/
 
@@ -80,7 +82,7 @@ int main(){
     // int rc = _strcmpi(str1,str2); // 不区分大小写比较 c strcmpi c++ _strcmpi , android ndk strcasecmp;
 
     // 比较前几个
-    // int rc = strncmp(str1,str2,7); // count 达标的是比较字符串前几个是否相等
+//     int rc = strncmp(str1,str2,7); // count 达标的是比较字符串前几个是否相等
     int rc = _strnicmp(str1,str2,6); // 不区分大小写的比较
     if(rc == 0) {
         printf("相等");
@@ -97,11 +99,11 @@ int main(){
     const char *str = "name not Eastrise";
     const char *substr = "E";
     char *pos = strstr(str, substr); //  返回的是字符串第一次出现的位置（位置指针），如果没有找到返回的是空
-    // printf("%s\n",pos); // Eastrise;
+    printf("%s\n", pos); // Eastrise;
     // 求一下位置 int 怎么办？ strstr
-    // int position = pos - str;
+    int position = pos - str;
 
-    // printf("第一次出现的位置是：%d\n",position);
+    printf("第一次出现的位置是：%d\n", position);
 
     // 包含？ pos 是不是空就可以了
     if (pos)
@@ -136,6 +138,7 @@ int main(){
 
     getchar();
 }*/
+
 
 // 截取
 /*char* substr(const char* str,int start ,int end){
@@ -174,7 +177,8 @@ int main(){
     free(sub);
 
     getchar();
-}*/
+}
+*/
 
 // dest 用来存放结果， 大小自己指定
 // source 需要转换的字符串
@@ -230,21 +234,24 @@ int main(){
 
 
 
-char* substr(const char* str,int start ,int end){
+char *substr(const char *str, int start, int end) {
     // 开辟一个字符串去存储我们的数据，开辟多大计算
     // char sub[end -start];
     int len = end - start;
-    char* sub = (char*)malloc(sizeof(char)*(len+1));// 记得+1，因为还有一个\0，在 NDK 一般会采用静态的数组存储 char sub[len]
+    if (len == 0) {
+        return nullptr;
+    }
+    char *sub = (char *) malloc(sizeof(char) * (len + 1));// 记得+1，因为还有一个\0，在 NDK 一般会采用静态的数组存储 char sub[len]
     // malloc 一定要 free
 
     // 遍历赋值
-    for(int i = 0; i< len; i++){
-        sub[i] = str[start+i];
+    for (int i = 0; i < len; i++) {
+        sub[i] = str[start + i];
     }
     // 标记字符串结尾，否则 print 无法判断结尾
     sub[len] = '\0';
 
-    printf("%p\n",sub);
+    printf("%p\n", sub);
 
     // free(sub);
 
@@ -252,32 +259,44 @@ char* substr(const char* str,int start ,int end){
 }
 
 
-char *str_replace(const char* str,const char* src,const char* dst) {
-    char* pos = strstr(str,src);
-    if(!pos)
+char *str_replace(const char *str, const char *src, const char *dst) {
+    char *pos = strstr(str, src);
+    if (!pos)
         return const_cast<char *>(str);
 
     // 1. 计算新的数组大小
-    char result[strlen(str)-strlen(src)+strlen(dst)];
+    char result[strlen(str) - strlen(src) + strlen(dst)];
 
     // 截取替换
     int start_position = pos - str;
-    char* start = substr(str,0,start_position);
-    char* end = substr(str,start_position+strlen(src),strlen(str));
+    char *start = substr(str, 0, start_position);
+    char *end = substr(str, start_position + strlen(src), strlen(str));
 
     // 拼接
-    strcpy(result,start);
-    strcat(result,dst);
-    strcat(result,end);
+    if (start){
+        strcpy(result, start);
+        strcat(result, dst);
+        free(start);
+        if (end){
+            strcat(result, end);
+            free(end);
+        }
+    }else{
+        strcpy(result, dst);
+        if (end){
+            strcat(result, end);
+            free(end);
+        }
+    }
 
-    return str_replace(result,src,dst);
+    return str_replace(result, src, dst);
 }
 
 // 字符串替换
-int main(){
-    char* str =  str_replace("aabbaabbfffaa","aa","ccc");
+int main() {
+    char *str = str_replace("aabbaabbfffaa", "aa", "ccc");
 
-    printf("%s",str);
+    printf("%s", str);
 
     getchar();
 }

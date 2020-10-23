@@ -11,8 +11,8 @@
 //    int*** s_s_p = &s_p; // 多级指针
 
     printf("p 的值是：%p, s_p 的值是：%p\n",p,s_p);
-    // p的地址是000000000060FE14 上面存的值为 12
-    // s_p的地址是000000000060FE08 ，上面存的值是 000000000060FE14
+    // p的地址是000000000060FE14 里面存的值为 12
+    // s_p的地址是000000000060FE08 ，里面存的值是 000000000060FE14
 
     // 通过二级指针获取值
     printf("获取最终的值是：%d",**s_p);
@@ -37,25 +37,25 @@
     }
 
     // 看一种现象：arr 的值 = arr 取地址的值 , arr 地址的值 = arr[0]的地址的值（首地址）
-    printf("arr = %p\n",arr);
-    printf("arr& = %p\n",&arr);
-    printf("arr[0]& = %p\n",&arr[0]);
+    printf("arr = %p\n",arr); // arr = 000000000060FE00
+    printf("&arr = %p\n",&arr); // &arr = 000000000060FE00
+    printf("&arr[0] = %p\n",&arr[0]); // &arr[0] = 000000000060FE00
 
     // 如何获取数组的指针
     int* arr_p = arr;// 数组指针指向的是数组的首地址
 
     // 做一系列的操作
-    printf("%d\n",*arr_p);
+    printf("%d\n",*arr_p); // 1
 
     // 对指针进行 ++
     arr_p++;
 
-    printf("%d\n",*arr_p);
+    printf("%d\n",*arr_p); // 2
 
     // 指针再往后挪动两位
     arr_p += 2;
 
-    printf("%d\n",*arr_p);
+    printf("%d\n",*arr_p); // 4
 
     getchar();
 }*/
@@ -72,9 +72,9 @@
     }
 
     getchar();
-}
+}*/
 
-int main(){
+/*int main(){
     int arr[4]; // 指定数组[4]
 
     int* arr_p = arr;
@@ -89,10 +89,10 @@ int main(){
         printf("位置%d的值是：%d\n",i,arr[i]);
     }
     getchar();
-}
+}*/
 
 // 数组指针的几种操作方式
-int main(){
+/*int main(){
 
     int arr[] = {1,2,3,4};
 
@@ -100,8 +100,8 @@ int main(){
 
     int i = 0;
     for(; i < 4; i++){
-        printf("位置%d的值是：%d\n",i,arr_p[i]); // == *(arr_p+i)
-        // printf("位置%d的值是：%d\n", i, *(arr + i));
+        printf("使用arr_p[i]算出位置%d的值是：%d\n",i,arr_p[i]); // == *(arr_p+i)
+        printf("使用*(arr + i)算出位置%d的值是：%d\n", i, *(arr + i));
     }
 
     getchar();
@@ -143,8 +143,8 @@ int main(){
     //add(1,2);
 
     // 方法指针怎么定义？ 方法的返回（*方法的名称）（方法的参数）
-    operator1(add,1,2);
-    operator1(mins,1,2);
+    operator1(add,1,2);  // 3
+    operator1(mins,1,2); // -1
 
     getchar();
 }*/
