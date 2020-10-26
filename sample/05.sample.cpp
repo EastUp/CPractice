@@ -138,8 +138,8 @@ int main(){
     worker += 9;
     strcpy(worker->name,"Eastrise9");
     worker->age = 9;
-    free(worker);
     printf("name = %s，age = %d",worker->name,worker->age);
+    free(worker);
 
     getchar();
 }*/
@@ -151,15 +151,15 @@ int main(){
     double salary; // 8
 
     // char name[10] 24, char name[18] 32
-    // 32 怎么来的？ 18 + 4 + 8 = 30,32
+    // 32 怎么来的？ 18 + 4 + 8 = 30, 按照能整除最大的基本数据类型来算：32/8=4
 };
 
 int main(){
-    int size = sizeof(Worker); // 16字节
+    int size = sizeof(Worker); // 24字节
     // 计算的规则：
     // 1. 按照最大的字节去计算
     // 2. 算得时候只会按照基本数据类型去算
-    // 3. 首先会把所有字节数加起来， 是否能够整除最大属性的字节数，如果不够会往上累加，一直加到能整除的位置
+    // 3. 首先会把所有字节数加起来，是否能够整除最大属性(有其它结构体就按照其它结构体中所有的基本类型数据总和跟本身最大的基本数据类型比较大小)的字节数，如果不够会往上累加，一直加到能整除的位置
 
     printf("size = %d \n",size);
     getchar();
@@ -186,7 +186,7 @@ int main(){
     // 计算的规则：
     // 1. 按照最大的字节去计算
     // 2. 算得时候只会按照基本数据类型去算
-    // 3. 首先会把所有字节数加起来， 是否能够整除最大属性的字节数，如果不够会往上累加，一直加到能整除的位置
+    // 3. 首先会把所有字节数加起来， 是否能够整除最大属性(有其它结构体就按照其它结构体中所有的基本类型数据总和跟本身最大的基本数据类型比较大小)的字节数的字节数，如果不够会往上累加，一直加到能整除的位置
     // 4. 进阶，留下一个思考
 
     printf("size = %d \n",size);
@@ -213,7 +213,7 @@ int main(){
 }*/
 
 // 定义一个 联合体
-/*union Person{
+union Person{
     // 最多出现一个，不用累加，找最大值 10， 16字节，需要能被最大的基本数据类型double 整除才行
     char name[10]; // 10
     int age; // 4
@@ -221,14 +221,14 @@ int main(){
 };
 
 // 5. 联合体的定义和使用，联合体只能存在一个，要么是 age ，要么是name
-int main(){
+/*int main(){
     Person person = {"Eastrise"};
     // Person person;
 
     // strcpy(person.name,"Eastrise");
     // person.age = 25;
 
-    // printf("name = %s,age = %d\n",person.name,person.age);
+    printf("name = %s,age = %d\n",person.name,person.age);
     printf("%d",sizeof(Person)); // 16，是否够 double 整除
 
     getchar();
@@ -237,8 +237,8 @@ int main(){
 // 6. 联合体大小计算（不用累加，取最大值，最终是否够基本数据类型整除）
 
 // 7. 枚举的定义和使用 枚举有点类似于 int
-/*
 enum CommentType{
+    // 后面的 = 只能是int类型,否则报错：Integral constant expression must have integral or unscoped enumeration type, not 'const char [4]
     TEXT = 10,TEXT_IMAGE,IMAGE
 };
 
@@ -251,7 +251,6 @@ int main(){
 
     getchar();
 }
-*/
 
 
 

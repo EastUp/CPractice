@@ -112,7 +112,7 @@ int main(){
     getchar();
 }*/
 
-int main(){
+/*int main(){
     // 写入位置 0x00000000 时发生访问冲突
     char* p1 = NULL; // p1 = NULL,NUll 也是地方，指针指向 NULL 相当于指向 0x00000000
 
@@ -125,10 +125,10 @@ int main(){
     printf("p1 = %s",p1); // Null的地址不能操作
 
     getchar();
-}
+}*/
 
 // 做字符串的强化
-/*int main(){
+int main(){
     // char buff[100] = {'e','a','s','t','r','i','s','e'};// 后面 8 - 99 都是默认值 0
     // char buff[5] = {'e','a','s','t','r'};
     // char buff[] = {'e','a','s','t','r'}; // 长度是 12（'\0'）, size 是 5（默认统计里面的个数）
@@ -136,9 +136,9 @@ int main(){
     // char buff[100] = { 0 }; // 把数组初始化为 0
     // char buff[100] 数据都是默认值 -52
 
-    //  char buff[] = "123456"; // len 是 6（'\0'）,size 是 7 ？
+      char buff[] = "123456"; // len 是 6（'\0'）,size 是 7
     // 相当于 char buff[] = {1,2,3,4,5,6,\0}
-    char* buff= "123456"; // len==6, size==8
+//    char* buff= "123456"; // len==6, size==8（64位系统指针占8字节）
 
     // 纠结一下 char buff[] = "123456" 和 char* buff= "123456"; malloc 的方式 啥区别 ？
     // 字符串可以在任何地方开辟内存，栈区，堆区，常量区
@@ -154,7 +154,7 @@ int main(){
 
     getchar();
 
-}*/
+}
 
 // 设计一个获取 Bitmao 属性的函数，请问怎么设计？（重点）
 // 1. 确定你的参数，传递指针

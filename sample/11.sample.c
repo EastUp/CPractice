@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 // 写一个打印数组的方法
@@ -23,14 +23,14 @@ void print(int* arr,int length){
     print(arr,size);
 
     getchar();
-}
+}*/
 
-void main(){
+/*void main(){
     int a; // 告诉c和c++编译器开辟一块连续大小的 4 字节的内存空间
     int arr[] = {1,2,3,4,5,6}; // arr 数据类型的内存大小空间 24
     a = 10;
     // -362002528 , -362002524  , -362002528  , -362002504   -362002504? = -362002528 + 24(数组的内存大小)
-    printf("%d,%d,%d,%d",arr,arr+1,&arr,&arr+1);
+    printf("%p,%p,%p,%p",arr,arr+1,&arr,&arr+1);
 
     getchar();
 }*/

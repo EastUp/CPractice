@@ -25,7 +25,7 @@ const char* file_split = "F:\\image_%d.jpg"; // 分割后的文件
 /*int main(){
     // 打开文件（文件名，模式） mode r(读) w(写) rb(作为二进制读) wb(作为二进制写) a（追加）
     // FILE* fopen(const char* filename,const char* mode);
-
+    // char *fgets(char *string, int n, FILE *stream);
     FILE* file = fopen(file_name,"r");
 
     if(!file){
@@ -71,16 +71,14 @@ const char* file_split = "F:\\image_%d.jpg"; // 分割后的文件
     }
 
     // siz_t fread(void *buffer,size_t size,size_t count, FILE* stream);
-    int buffer[512]; // 2048 = 4*518
+    int buffer[512]; // 2048 = 4*512
     int len;
     printf("%d",sizeof(buffer));
     while ((len = fread(buffer,sizeof(int),512,file))!=0){
         fwrite(buffer,sizeof(int),len,file_copy);
     }
-
     fclose(file);
     fclose(file_copy);
-
 }*/
 
 // 获取文件的大小
@@ -129,7 +127,6 @@ const char* file_split = "F:\\image_%d.jpg"; // 分割后的文件
     while ((c = fgetc(file))!=EOF){
         fputc(c ^ 5,file_encrpy);
     }
-
 }*/
 
 // 文件的解密（该方法文件适合图片，如果文件中有中文就不适合）
@@ -260,7 +257,7 @@ int getFileSize(const char* fileName){
     int preFileSize = file_size / file_number;
     // 计算复制
     int i = 0;
-    for(; i< 3; i++){
+    for(; i< file_number; i++){
         file_names[i] = (char*)malloc(sizeof(char)*100);// '\0'
         sprintf(file_names[i],file_split,i);
 
@@ -293,7 +290,7 @@ int getFileSize(const char* fileName){
 }*/
 
 // 文件的合并
-int main(){
+/*int main(){
     FILE* file0 = fopen("F:\\image_0.jpg","rb");
     FILE* file1 = fopen("F:\\image_1.jpg","rb");
     FILE* file2 = fopen("F:\\image_2.jpg","rb");
@@ -317,7 +314,7 @@ int main(){
     fclose(file1);
     fclose(file2);
     fclose(file_merge);
-}
+}*/
 
 
 
