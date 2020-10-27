@@ -99,7 +99,7 @@ typedef struct student{
     int salary; // 4
     char sex; // 1 8
     char name[10]; // 10
-    struct date birthday; // 12
+    struct date birthday; // 4
 
     // 31%4  32%4 32个字节？ // 36
 }student;

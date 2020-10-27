@@ -176,7 +176,8 @@ void initParams(char*** params,int number){ // 三级指针就出来了，最多
     // 开辟内存去赋值
     char** tempParams = (char**)malloc(sizeof(char*)*number); // 开辟二位数组
     // 开辟一维数组
-    for(int i =0; i<number; i++){
+    int i =0;
+    for(;i<number; i++){
         tempParams[i] = malloc(sizeof(char)*50); // 不会去开辟一维数组
         sprintf(tempParams[i],"i = %d",i);
     }
