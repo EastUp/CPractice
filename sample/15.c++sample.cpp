@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <iostream> // c++ 的包
-#include "15.Student.h"
-//#include "15.Student.cpp"
+//#include "15.Student.h"
+#include "15.Student.cpp"
 
 using namespace std; // 命名的空间， java中的内部类
 
@@ -27,10 +27,10 @@ using namespace std; // 命名的空间， java中的内部类
 
     // number = 20;
 
-    // int* numberP = &number; //  不能通过地址去修改值，但是某些编译器上面能通过，但是也不能修改值。
+     int* numberP = &number; //  不能通过地址去修改值，但是某些编译器上面能通过，但是也不能修改值。
     // c 是能干修改的，在 c 中可以说是一个伪命题
 
-    // *numberP = 20
+     *numberP = 20;
 
     // printf("%d",number);
 }*/
@@ -78,7 +78,7 @@ int main(){
 }*/
 
 // 3. 常量引用
-/*typedef struct{
+/*typedef struct {
     char name[20];
     int age;
 } Student;
@@ -103,7 +103,7 @@ int main(){
     return number1 + number2;
 }
 
-// 错误 1 error C2084：函数 "int add(int,int)" 已有主题， c 不允许函数的重载
+// 如果在C中会报错：错误 1 error C2084：函数 "int add(int,int)" 已有主题， c 不允许函数的重载
 int add(int number1, int number2, int number3) {
     return number1 + number2 + number3;
 }
@@ -111,7 +111,7 @@ int add(int number1, int number2, int number3) {
 int main() {
     int number1 = 100;
     int number2 = 200;
-    int sum = add(number1, 200);
+    int sum = add(number1);
 
     // bool 类型
     bool cache = -100; // 0（false） 和 !0（true）
@@ -122,7 +122,7 @@ int main() {
         cout << "false" << endl;
     }
 
-    // printf("sum = %d", sum);
+     printf("sum = %d", sum);
 }*/
 
 // 0 1 2 ,0 打印， 1 上传到后台， 2 友盟和服务器

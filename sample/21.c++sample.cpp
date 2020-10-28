@@ -74,13 +74,11 @@ class Worker: public Person{
 
 // dynamic_Cast (动态转换 ，更安全，转换成功返回类型，失败返回空 ，
 //      必须要包含多态类型和 static_cast 很类似，但是更安全)
-/*
-int main(){
+/*int main(){
     Student *stu = new Student("",26);
 
     Person *worker = dynamic_cast<Person* >(stu);
-}
-*/
+}*/
 
 /*class Exception{
 public:

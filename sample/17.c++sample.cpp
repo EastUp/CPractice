@@ -1,28 +1,28 @@
 #include <iostream>
 #include <stdarg.h>
 using namespace std;
-#include "17.Student.h"
+#include "17.Student.cpp"
 // 1. 可变参数
-//void sum(int count,...){// java：int ..., c++： ...
-//    va_list vp;
-//    // 可变参数开始方法， count 代表从哪里开始，读几个
-//    va_start(vp,count);
-//
-//    int number = va_arg(vp,int);
-//    cout << number <<endl;
-//
-//    // 读取下一个
-//    number = va_arg(vp,int);
-//    cout << number <<endl;
-//
-//    // 读取下一个，超出了默认是 0
-//    number = va_arg(vp,int);
-//    cout << number <<endl;
-//}
+/*void sum(int count,...){// java：int ..., c++： ...
+    va_list vp;
+    // 可变参数开始方法， count 最后一个传递给函数的已知的固定参数。
+    va_start(vp,count);
+
+    int number = va_arg(vp,int);
+    cout << number <<endl;
+
+    // 读取下一个
+    number = va_arg(vp,int);
+    cout << number <<endl;
+
+    // 读取下一个，超出了默认是 0
+    number = va_arg(vp,int);
+    cout << number <<endl;
+}*/
 
 /*int sum(int count,...){// java：int ..., c++： ...
     va_list vp;
-    // 可变参数开始方法， count 代表从哪里开始
+    // 可变参数开始方法， count 最后一个传递给函数的已知的固定参数。
     va_start(vp,count);
 
     int sum = 0;
@@ -39,7 +39,7 @@ using namespace std;
 }
 
 int main(){
-    // sum(5,1,2,4);
+//     sum(5,1,2,4);
     int number = sum(4,1,2,4,0); // 7
     cout << number << endl;
 }*/
@@ -54,7 +54,7 @@ public:
     static int tag; // 定义
 
     Student(){
-        tag = 12;
+        tag = 12;// 这里不算初始化
     }
 
 public:
@@ -208,7 +208,7 @@ int main(){
 }*/
 
 // 友元类
-/*class ImageView{
+class ImageView{
 public: // Class 是 ImageView 的友元类
     friend class Class;
 
@@ -235,7 +235,7 @@ int main(){
     b.changeA(12);
 
     cout << b.getA() << endl;
-}*/
+}
 
 
 

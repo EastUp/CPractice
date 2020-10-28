@@ -35,8 +35,8 @@ using namespace std;
     string str1 = "123";
     string str2 = "456";
 
-    // str1 = str1 + str2;
-    // str1 = str1.append(str2);
+//     str1 = str1 + str2;
+     str1 = str1.append(str2);
 
     cout << str1 << endl;
 }*/
@@ -71,11 +71,11 @@ using namespace std;
 /*int main() {
     string str1 = "123 abc 123 abc 123";
     // 查找谁，从哪里开始
-    // int position = str1.find("123",0);
+     int position1 = str1.find("123",0);
     // 从后面往前找
-    int position = str1.rfind("123");
+    int position2 = str1.rfind("123");
 
-    cout << position << endl;
+    cout << position1 << "," << position2 <<endl;
 }*/
 
 // 大小写转换
@@ -199,7 +199,7 @@ int main(){
 
 }*/
 
-/*class Student {
+class Student {
 private:
     string name;
 public:
@@ -222,7 +222,7 @@ int main(){
 
     // vector front back
 
-}*/
+}
 
 /*class Exception : public out_of_range {
 public:

@@ -75,7 +75,7 @@ public:
 };*/
 
 // 2.2 虚继承（二义性）
-class A {
+/*class A {
 public:
     char *name;
 };
@@ -132,7 +132,7 @@ int main() {
 
     // c++ 多态：动态多态（子父类），静态多态（函数的重载）（编译过程确定性的区别）
     //（一嗨租车） 5轮，2轮（万科），4轮
-}
+}*/
 
 // 纯虚函数类似于：java 中的 抽象类，接口，
 /*class BaseActivity{
@@ -165,7 +165,8 @@ int main(){
     m_a->onCreate();
 }*/
 
-/*class ClickListener{ // 所有的函数都是虚函数，那么就可以认为是接口
+/*
+class ClickListener{ // 所有的函数都是虚函数，那么就可以认为是接口
 public:
     virtual void click() = 0; // 必须要加 = 0
 };
@@ -200,7 +201,8 @@ int main(){
     // click(listener);
 
     click(click);
-}*/
+}
+*/
 
 // 构造函数和析构函数
 /*class Person{
@@ -247,7 +249,7 @@ float add(float number1,float number2){
 }*/
 
 // 模板函数 算法4 看一遍敲一遍
-/*template <typename T>  // 模板函数的定义（不能有分号）
+template <typename T>  // 模板函数的定义（不能有分号）
 T add(T number1,T number2){
     return number1+number2;
 }
@@ -261,7 +263,7 @@ int main(){
 
     int sum3 = add(1.0f,2.0f);
     cout << sum3 << endl;
-}*/
+}
 
 
 

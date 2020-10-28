@@ -51,8 +51,27 @@ using namespace std;
     }
 }*/
 
+/*int main()
+{
+    std::map<int, std::string> c = {{1, "one"}, {2, "two"}, {3, "three"},
+                                    {4, "four"}, {5, "five"}, {6, "six"}};
+
+    // erase all odd numbers from c
+    for(auto it = c.begin(); it != c.end(); ) {
+        if(it->first % 2 == 1)
+            it = c.erase(it);
+        else
+            ++it;
+    }
+
+    for(auto& p : c) {
+        std::cout << p.second << ' ';
+    }
+}*/
+
 // multimap 可存 key 重复的数据
-/*int main(){
+/*
+int main(){
     multimap<int,string> map1;
     // 案例， 1 （11， 12， 13）， 2 （21， 22， 23）， 3 （31， 32， 33）
 
@@ -69,13 +88,13 @@ using namespace std;
     map1.insert(pair<int,string>(3,"33"));
 
     // 遍历
-    for(map<int,string>::iterator it = map1.begin(); it != map1.end(); it++){
+    for(auto it = map1.begin(); it != map1.end(); it++){
         cout << it->first << " - " << it->second.c_str() << endl;
     }
     cout << " 遍历结束 " << endl;
 
     // 分组查询 多个数据
-    multimap<int,string>::iterator find_it = map1.find(3);
+    auto find_it = map1.find(3);
     while(find_it!=map1.end()){
         cout << find_it->first << " - " << find_it->second.c_str() << endl;
         find_it ++;
@@ -85,7 +104,8 @@ using namespace std;
             break;
         }
     }
-}*/
+}
+*/
 
 /*class Person{
 public:
@@ -182,7 +202,6 @@ int main(){
 }*/
 
 // 二元谓词
-/*
 class CompareObj{
 public:
     int count = 0;
@@ -199,7 +218,7 @@ int main(){
     set1.insert("ccc");
     set1.insert("ddd");
     // 是否包含 aaa ， 遍历比较 ， 找方法
-    for(set<string>::iterator it = set1.begin();it != set1.end(); it ++){
+    for(auto it = set1.begin();it != set1.end(); it ++){
         cout << (*it).c_str() <<  endl;
     }
-}*/
+}

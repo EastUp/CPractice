@@ -67,13 +67,13 @@ using namespace std;
 
     // 并不能够通过角标去插入获取值，如果在开发的过程中的确需要通过角标去获取值，需要自定义
 
-    *//*for(int i = 0; i < s.size(); i ++){
-        cout << s. << endl;
-    }*//*
+*//*    for(int i = 0; i < s.size(); i ++){
+        cout << s【【 << endl;
+    }
 
     // 迭代器也没有，并不支持循环的，非得循环
 
-    *//*for(stack<int> :: iterator it; i < s.size(); i ++){
+    for(stack<int> :: iterator it; i < s.size(); i ++){
         cout << s. << endl;
     }*//*
 
@@ -228,7 +228,7 @@ int main(){
 }*/
 
 // multiset容器， 允许重复，用法和 set 一样
-/*int main(){
+int main(){
     // set<int,less<int>>;// 从小到大排序，默认就是 less
     multiset<int,greater<int>> ms;
 
@@ -243,6 +243,6 @@ int main(){
         cout << *it << endl;
     }
 
-}*/
+}
 
 

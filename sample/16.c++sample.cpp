@@ -100,7 +100,7 @@ public:
 
     cout << stu->getName() << ", " << stu->getAge() << endl;
 
-    free(stu);
+    delete(stu);
 
     // java 对象的被回收会调用什么方法？ android java 内存回收的时候（系统架构）腾讯面试（笔试）
 }*/
@@ -120,8 +120,7 @@ public:
     // 4. 如果用了 new, 那么一定要记得 delete （释放内存）
 }*/
 
-/*
-struct Person{
+/*struct Person{
     int age;
     char* name;
 };
@@ -131,11 +130,13 @@ int main(){
 
     Person person2 = person1;// = 是赋值，把里面所有定义的属性赋值，c/c++ 编译器帮我们做的
 
-    cout << &person1 << " , " << &person2 << endl;
+    cout << &person1 << " , " << &person2 << endl; // 地址不一样，是深拷贝
+
+    person1.name = "sss";
 
     cout << person2.name << " , " << person2.age << endl;
-}
-*/
+
+}*/
 
 /*int main(){
     Student* stu1 = new Student("eastrise,",25);
