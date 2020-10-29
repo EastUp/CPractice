@@ -8,8 +8,7 @@ using namespace std;
 
 // 自定义重载（） 运算符
 // 1. 预定义函数对象和函数适配器
-/*
-int main(){
+/*int main(){
     // c/c++ 提供了很多定义好的函数对象
     // 常见的几个 less, greater , plus , equal_to
     plus<string> strAdd;
@@ -26,24 +25,22 @@ int main(){
     // 怎么写仿函数，一定要确定好你的仿函数的参数
     // bind2nd 函数适配器， aaa 相当于 equal_to 中的 right
 
-*/
-/*    template<class _Ty = void>
-    struct multiplies
-            : public binary_function<_Ty, _Ty, _Ty>
-    {	// functor for operator*
-        _Ty operator()(const _Ty& _Left, const _Ty& _Right) const
-        {	// apply operator* to operands
-            return (_Left * _Right);
-        }
-    }*//*
+//    template<class _Ty = void>
+//    struct multiplies
+//            : public binary_function<_Ty, _Ty, _Ty>
+//    {	// functor for operator*
+//        _Ty operator()(const _Ty& _Left, const _Ty& _Right) const
+//        {	// apply operator* to operands
+//            return (_Left * _Right);
+//        }
+//    }
 
 
     set<string> :: iterator  find_it = find_if(set1.begin(),set1.end(),bind2nd(equal_to<string>(),"aaa"));
     if(find_it!=set1.end()){
         cout << "找到了" << (*find_it).c_str() << endl;
     }
-}
-*/
+}*/
 
 // 1，种方式自定义仿函数（函数对象）
 /*class Equal{
@@ -209,7 +206,7 @@ void print(int number){
 }*/
 
 // copy，replace
-/*int main(){
+int main(){
     vector<int> vector1;
     vector1.push_back(1);
     vector1.push_back(2);
@@ -218,11 +215,11 @@ void print(int number){
 
     vector<int> vector2(2);
     copy(vector1.begin(),vector1.begin()+2,vector2.begin());
-    // for_each(vector2.begin(),vector2.end(),print);
+     for_each(vector2.begin(),vector2.end(),print);
 
     replace(vector1.begin(),vector1.end(),2,22);
     for_each(vector1.begin(),vector1.end(),print);
-}*/
+}
 
 // 模板类 _InIt 名字 , _First, _Last , 返回值 是一个类型
 // _Pr _Pred 这是什么？
